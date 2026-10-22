@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>HtspTuner</RootNamespace>
     <AssemblyVersion>1.0.0.49</AssemblyVersion>
     <FileVersion>1.0.0.49</FileVersion>
@@ -16,10 +16,10 @@
 
   <ItemGroup>
     <!-- Compile against the server API, never ship it: ExcludeAssets/Private keeps bin/ clean. -->
-    <PackageReference Include="Jellyfin.Controller" Version="10.11.11" ExcludeAssets="runtime" Private="false" />
-    <PackageReference Include="Jellyfin.Model" Version="10.11.11" ExcludeAssets="runtime" Private="false" />
+    <PackageReference Include="Jellyfin.Controller" Version="12.0.0" ExcludeAssets="runtime" Private="false" />
+    <PackageReference Include="Jellyfin.Model" Version="12.0.0" ExcludeAssets="runtime" Private="false" />
     <!-- IHostedService only; the server already hosts it, hence the same compile-only treatment. -->
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.11" ExcludeAssets="runtime" Private="false" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.11" ExcludeAssets="runtime" Private="false" />
   </ItemGroup>
 
   <ItemGroup>

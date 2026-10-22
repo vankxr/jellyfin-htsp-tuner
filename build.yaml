@@ -15,15 +15,13 @@ version: "1.0.0.0"
 
 # targetAbi is a MINIMUM server version, not an exact match: Jellyfin loads the plugin on
 # any server whose ABI is >= this value, and HIDES it from any server below it.
-# The Live TV API we bind to is unchanged back to 10.10, BUT our assembly is compiled for
-# net9.0 and a net8.0 10.10 server physically cannot load it. So the floor is 10.11, which
-# is the first net9.0 server release. Do NOT lower this to 10.10.x.
-targetAbi: "10.11.0.0"
+# This build uses Jellyfin 12's server API and net10.0, so earlier servers cannot load it.
+targetAbi: "12.0.0.0"
 
-framework: "net9.0"
-owner: "vk496"
+framework: "net10.0"
+owner: "vankxr"
 category: "LiveTV"
-imageUrl: "https://raw.githubusercontent.com/vk496/jellyfin-htsp-tuner/main/logo.png"
+imageUrl: "https://raw.githubusercontent.com/vankxr/jellyfin-htsp-tuner/main/logo.png"
 
 overview: "Native HTSP streaming from Tvheadend, remuxed locally to MPEG-TS."
 
@@ -49,28 +47,6 @@ artifacts:
 
 # Only the current version's notes -- each release carries just its own changelog.
 changelog: |-
-  - Give programmes a picture, taken from the broadcast itself. Most programmes come with no
-    artwork, which is what leaves the Live TV home page full of blank placeholder tiles. The
-    plugin now grabs a still frame off the channel for the programmes on air that have none,
-    and stamps the channel's logo into the corner on a soft dark disc so a row of thumbnails
-    still says where each one came from. It works through the home page a viewer at a time,
-    most recently used account first, and follows each multiplex it tunes so the other
-    channels on it come nearly free.
-  - Cost nothing where it can. A channel somebody is already watching is sampled from the
-    stream in memory -- no tuner, no subscription -- and re-shot every few minutes, since the
-    frame caught in a programme's opening seconds is rarely the one that describes it. Every
-    other capture holds its tuner at the lowest weight Tvheadend accepts, so a viewer starting
-    a channel takes it back rather than waiting. Broadcaster artwork is never overwritten.
-  - Give recordings a picture too. Jellyfin copies a programme's artwork next to the recording
-    as it starts, so a programme still blank at that moment kept a blank recording for good.
-    Opening a channel now captures a frame straight away, which is exactly when a recording
-    begins.
-  - Delete Live TV artwork for programmes that no longer exist. Jellyfin drops the programme
-    from the database when it ages out of the guide but leaves the picture on disk, because it
-    only clears metadata folders for items that came from a file -- so they accumulate for as
-    long as the server has had Live TV. Hundreds of megabytes on a long-running install.
-  - Settings for all of it, and a button on the settings page to run a sweep on demand or stop
-    one that is running -- captures are deliberately unhurried, so there has to be a way to say
-    "the TV is free, get on with it".
-  - Report a tuner's lock state where it has no signal figures to report, instead of leaving
-    the column blank.
+  - Add Jellyfin 12 support, targeting its 12.0.0 server API and .NET 10.
+  - Update builds, release packaging and the development deploy script for .NET 10.
+  - Require Jellyfin 12 or newer; Jellyfin 10.11 users should use an earlier release.

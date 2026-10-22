@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/vk496/jellyfin-htsp-tuner/releases"><img src="https://img.shields.io/github/v/release/vk496/jellyfin-htsp-tuner?color=00a4dc" alt="Release"></a>
-  <img src="https://img.shields.io/badge/Jellyfin-10.11%2B-00a4dc" alt="Jellyfin 10.11+">
+  <img src="https://img.shields.io/badge/Jellyfin-12%2B-00a4dc" alt="Jellyfin 12+">
   <a href="LICENSE"><img src="https://img.shields.io/github/license/vk496/jellyfin-htsp-tuner" alt="License"></a>
 </p>
 
@@ -122,7 +122,8 @@ closed upstream — they are collected here so they are not mistaken for bugs.
 
 ## Requirements
 
-- **Jellyfin 10.11 or newer** (built for `net9.0`; `targetAbi` is `10.11.0.0`).
+- **Jellyfin 12 or newer** (built for `net10.0`; `targetAbi` is `12.0.0.0`). For Jellyfin
+  10.11, use an earlier release targeting `10.11.0.0`.
 - A reachable **Tvheadend** with HTSP enabled (default port **9982**), protocol **v43+**.
 - A Tvheadend user with streaming access. Empty username/password works if Tvheadend allows
   anonymous access.
@@ -152,6 +153,9 @@ Jellyfin `plugins` directory as `HtspTuner_<version>/`, and restart Jellyfin.
 
 ### From source (dev inner loop)
 
+Building from source requires the **.NET 10 SDK**. Run `dotnet build --configuration Release`
+and `dotnet test --configuration Release` from the repository root.
+
 [`tools/deploy.sh`](tools/deploy.sh) builds, stages into a running Jellyfin, restarts it, and
 reports the plugin status. Nothing host-specific is baked in — it reads everything from the
 environment and fails loudly if a required value is missing:
@@ -172,7 +176,10 @@ export JELLYFIN_URL=http://localhost:8096         # optional (this is the defaul
 
 ## What works / what doesn't yet
 
-**Works (verified end-to-end against real Tvheadend + Jellyfin 10.11):**
+The Jellyfin 12 build passes the automated test suite, including the ffprobe muxer checks.
+Live playback on a Jellyfin 12 server still needs end-to-end validation.
+
+**Previously verified end-to-end against real Tvheadend + Jellyfin 10.11:**
 
 - HTSP subscription and in-process remux; H.264 / HEVC / MPEG-2 video with EAC3 / AC3 / MP2 /
   AAC audio decode cleanly through Jellyfin (AAC is re-framed to ADTS).

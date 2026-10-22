@@ -57,7 +57,7 @@ if [[ -z "${VERSION}" ]]; then
   log "Could not read <Version>; falling back to ${VERSION}"
 fi
 
-BUILD_OUT="${REPO_ROOT}/HtspTuner/bin/${CONFIG}/net9.0"
+BUILD_OUT="${REPO_ROOT}/HtspTuner/bin/${CONFIG}/net10.0"
 DLL="${BUILD_OUT}/${ASSEMBLY_NAME}.dll"
 if [[ ! -f "${DLL}" ]]; then
   echo "FATAL: built assembly not found at ${DLL}" >&2
@@ -82,7 +82,7 @@ cat >"${STAGE}/meta.json" <<JSON
   "name": "HTSP Tuner",
   "overview": "Native HTSP streaming from Tvheadend.",
   "owner": "vk496",
-  "targetAbi": "10.11.0.0",
+  "targetAbi": "12.0.0.0",
   "timestamp": "${TIMESTAMP}",
   "version": "${VERSION}",
   "status": "Active",
