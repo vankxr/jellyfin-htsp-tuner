@@ -1,1 +1,21 @@
-[]
+[
+    {
+        "guid": "48472334-959b-4838-a963-3a92e5a603d1",
+        "name": "HTSP Tuner",
+        "description": "Live TV and DVR for Jellyfin backed by Tvheadend over its native HTSP protocol. Unlike the official Tvheadend plugin -- which speaks HTSP only for metadata and then pulls the actual video over plain HTTP -- this plugin subscribes to the HTSP stream directly and remuxes the elementary streams into MPEG-TS inside Jellyfin. Codec, resolution, language and channel layout come straight from the HTSP subscriptionStart event; a short, one-time probe of the plugin's own muxed output then fills in the fields HTSP cannot carry -- interlacing, HDR/colour, bit depth, profile and level -- so Jellyfin makes correct direct-play, deinterlace and transcode decisions. All of this happens without opening a second tuner subscription. Add it under Live TV -> Add Tuner Device; a matching HTSP guide is registered automatically. Supports multiple Tvheadend servers, fast same-multiplex channel switching, radio channels, live EPG pushed over async metadata, recording via Jellyfin's DVR, channel tags, stream sharing between clients, and tuner/signal statistics.",
+        "overview": "Native HTSP streaming from Tvheadend, remuxed locally to MPEG-TS.",
+        "owner": "vankxr",
+        "category": "LiveTV",
+        "versions": [
+            {
+                "version": "1.0.1.0",
+                "changelog": "- Add Jellyfin 12 support, targeting its 12.0.0 server API and .NET 10.\n- Update builds, release packaging and the development deploy script for .NET 10.\n- Require Jellyfin 12 or newer; Jellyfin 10.11 users should use an earlier release.",
+                "targetAbi": "12.0.0.0",
+                "sourceUrl": "https://github.com/vankxr/jellyfin-htsp-tuner/releases/download/v1.0.1.0/htsp-tuner_1.0.1.0.zip",
+                "checksum": "01f397186af22da372dcc2982e32e745",
+                "timestamp": "2026-10-22T14:42:14Z"
+            }
+        ],
+        "imageUrl": "https://raw.githubusercontent.com/vankxr/jellyfin-htsp-tuner/main/logo.png"
+    }
+]
